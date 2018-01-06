@@ -163,13 +163,14 @@
 
     var tentativePortalID;
     var tentativePortalName;
+    var tentativePortalType;
 
     $(function() {
 
       // roomcast_style();
 
 
-    	// build the portals menu
+      // build the portals menu
 
         $('#portals').empty();
         for (var i=0; i<top.portals.portalList.length; i++) {
@@ -185,26 +186,31 @@
           }
         }
 
+        function lookupType(p){
+          var temp = top.portals.portalList.filter(function(item){
+            return (p == item.ID);
+          })[0];
+          return temp.type;
+        }
 
+      // highlight the current portal
 
-    	// highlight the current portal
-
-    	$( "#portals li" ).filter(function(arg){
+      $( "#portals li" ).filter(function(arg){
             return( $( "#portals li" )[arg].value == top.portal.ID)
         }).addClass('ui-selected');
 
-    	// if a portal is selected, highlight it
+      // if a portal is selected, highlight it
 
-  		$( "#portals li a" ).on( "click", function( event, ui ) { 
+      $( "#portals li a" ).on( "click", function( event, ui ) { 
 
-  			$( "#portals li" ).removeClass('ui-selected'); 
-  			$( "#portals li a" ).removeClass('ui-selected');
-  			var p = event.currentTarget;
-  			tentativePortalName = p.innerHTML;
-  			p = $(p);
-  			p.addClass('ui-selected');
-  			tentativePortalID = p.parent()[0].value;
-  			// top.set_portal();
+        $( "#portals li" ).removeClass('ui-selected'); 
+        $( "#portals li a" ).removeClass('ui-selected');
+        var p = event.currentTarget;
+        tentativePortalName = p.innerHTML;
+        p = $(p);
+        p.addClass('ui-selected');
+        tentativePortalID = p.parent()[0].value;
+        // top.set_portal();
         $('#instances').empty();
 
         var instanceList = top.instances.data.filter(function(item){
@@ -215,6 +221,7 @@
         if (instanceList.length == 1) {
           top.portal.ID = tentativePortalID;
           top.portal.name = tentativePortalName;
+          top.portal.type = lookupType(tentativePortalID);
           top.instance.ID = instanceList[0].ID;
           top.instance.name = instanceList[0].name;
           top.build_page();
@@ -244,14 +251,15 @@
           top.instance.ID = p.parent()[0].value;
           top.portal.ID = tentativePortalID;
           top.portal.name = tentativePortalName;
+          top.portal.type = lookupType(tentativePortalID);
  
           top.build_page();
         });        
 
-  		});
+      });
 
 
-	});
+  });
 
 </script>
 
