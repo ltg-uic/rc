@@ -67,7 +67,25 @@
 
 //end keep alive
 
-	$(window).resize(function(){location.reload(true);});
+    var windowWidth = $(window).width();
+
+    /* Resize Event */
+    $(window).resize(function(){
+        // Check if the window width has actually changed and it's not just iOS triggering a resize event on scroll
+        if ($(window).width() != windowWidth) {
+
+            // Update the window width for next time
+            location.reload(true);
+
+            // Do stuff here
+
+        }
+
+        // Otherwise do nothing
+
+    });
+
+
 
     $(function() {
      nutella.net.request("get_seismogram",{},function(sg){ 
