@@ -67,6 +67,8 @@
 
 //end keep alive
 
+	$(window).resize(function(){location.reload(true);});
+
     $(function() {
      nutella.net.request("get_seismogram",{},function(sg){ 
 
@@ -503,7 +505,7 @@
 
 </head>
 <!-- <body> -->
-<body onresize="location.reload(true);">
+<body id="bod">
 	
 	<canvas id="seismogram" width="10" height="10" style="border:1px solid black;"></canvas>
 	<br><button id="back">Back</button><button id="forward">Forward</button><button id="live">Live</button>
