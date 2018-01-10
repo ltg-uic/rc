@@ -61,7 +61,7 @@
 		var timeNow = (new Date).getTime();
 		if ((timeNow - lastping) > 70*1000){
 			console.log('seismograph reconnected at ' + timeNow);
-			location.reload(true);
+			alert(1);location.reload(true);
 		}	
 	}
 
@@ -72,7 +72,7 @@
     /* Resize Event */
     $(window).resize(function(){
         // Check if the window width has actually changed and it's not just iOS triggering a resize event on scroll
-        if ($(window).width() != windowWidth) {location.reload(true)};
+        if ($(window).width() != windowWidth) {alert(2);location.reload(true)};
     });
 
 
@@ -120,8 +120,8 @@
 		//     alert("Can play through audio without stopping");
 		// };
 
-		nutella.net.subscribe("mode_update", function() {location.reload(true);});
-		nutella.net.subscribe("changed_seismogram", function() {location.reload(true);});
+		nutella.net.subscribe("mode_update", function() {alert(3);location.reload(true);});
+		nutella.net.subscribe("changed_seismogram", function() {alert(4);location.reload(true);});
 
 
     	document.getElementById("seismogram").width=window.innerWidth-20;
