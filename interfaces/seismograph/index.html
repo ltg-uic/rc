@@ -49,21 +49,21 @@
 
 //keep alive
 
-	var lastping = (new Date).getTime();
-	setInterval(reconnect, 60*1000);
+	// var lastping = (new Date).getTime();
+	// setInterval(reconnect, 60*1000);
 
-	nutella.net.subscribe('ping',function(message,from){
-		lastping = (new Date).getTime();
-		console.log('received ping at ' + lastping);
-	});
+	// nutella.net.subscribe('ping',function(message,from){
+	// 	lastping = (new Date).getTime();
+	// 	console.log('received ping at ' + lastping);
+	// });
 
-	function reconnect(){
-		var timeNow = (new Date).getTime();
-		if ((timeNow - lastping) > 70*1000){
-			console.log('seismograph reconnected at ' + timeNow);
-			location.reload(true);
-		}	
-	}
+	// function reconnect(){
+	// 	var timeNow = (new Date).getTime();
+	// 	if ((timeNow - lastping) > 70*1000){
+	// 		console.log('seismograph reconnected at ' + timeNow);
+	// 		location.reload(true);
+	// 	}	
+	// }
 
 //end keep alive
 
@@ -502,8 +502,8 @@
     </script>
 
 </head>
-<body>
-<!-- <body onresize="location.reload(true);"> -->
+<!-- <body> -->
+<body onresize="location.reload(true);">
 	
 	<canvas id="seismogram" width="10" height="10" style="border:1px solid black;"></canvas>
 	<br><button id="back">Back</button><button id="forward">Forward</button><button id="live">Live</button>
