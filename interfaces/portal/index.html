@@ -178,7 +178,7 @@
           if ((top.portal.ID == 1) || // 
               (top.portal.ID == 2 && item.type != 'administrative') ||
               (top.portal.ID > 2 && top.portal.type == "administrative" && item.ID != 1) ||
-              (top.portal.ID > 2 && top.portal.type == 'participant' && item.type == 'participant' && item.ID != 2) ||
+              (top.portal.ID > 2 && top.portal.type == 'participant' && item.type == 'participant' && item.ID ==top.portal.ID) ||
               (top.portal.ID > 2 && top.portal.type == 'public' && item.type == 'public' && item.ID != 2))
               {
                 var li = '<li class="ui-widget-content" value=' + item.ID + ' name="' + item.name + '"><a href="#">' + item.name + '</a></li>';
