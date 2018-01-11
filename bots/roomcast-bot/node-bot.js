@@ -65,8 +65,7 @@ if (!resources.hasOwnProperty('topID')){
         {ID:6,name:'design',description:'design',link:'design',query:'',type:"administrative"},
         {ID:7,name:'instances',description:'instances',link:'instances',query:'',type:"administrative"},
         {ID:8,name:'unitname',description:'unitname',link:'unitname',query:'',type:"administrative"},
-        {ID:9,name:'URLs',description:'URLs',link:'URLs',query:'',type:"administrative"},
-        {ID:10,name:'distribute',description:'distribute',link:'distribute',query:'',type:"administrative"}
+        {ID:9,name:'URLs',description:'URLs',link:'URLs',query:'',type:"administrative"}
 
 
 
@@ -92,7 +91,6 @@ if (!design.hasOwnProperty('data')){
         {portalID:1,activityID:0,resourceID:7},
         {portalID:1,activityID:0,resourceID:8},
         {portalID:1,activityID:0,resourceID:9},
-        {portalID:1,activityID:0,resourceID:10},
 
         // educator
 
@@ -102,8 +100,7 @@ if (!design.hasOwnProperty('data')){
         {portalID:2,activityID:1,resourceID:5},
         {portalID:2,activityID:1,resourceID:7},
         {portalID:2,activityID:1,resourceID:8},
-        {portalID:2,activityID:1,resourceID:9},
-        {portalID:2,activityID:1,resourceID:10}
+        {portalID:2,activityID:1,resourceID:9}
 
     ]};
     design.save();
