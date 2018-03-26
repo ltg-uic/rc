@@ -3,5 +3,6 @@
   "version": "3.0.0",
   "nutella_version": "0.6.0",
   "type": "project",
-  "description": "Controls for the Classroom of Things"
+  "description": "roomcast demo with roomquake",
+  "app_bots": ["class-bot"]
 }

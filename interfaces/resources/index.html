@@ -169,6 +169,7 @@
 
 
 
+
     	// build the resources menu
     	function build_resources_list() {
     		$('#resources').empty();
@@ -184,7 +185,12 @@
           // if (top.portal.type == "administrative" || 
           //     (top.portal.type == "participant" && item.type != "administrative"))
           // {
-              var li = '<li class="ui-widget-content" value=' + item.ID + ' name="' + item.name + '"><a href="#">' + item.name + '</a></li>';
+
+            var extra = (item.query == '') ? '' : ' [' + item.query + ']';
+            var li = '<li class="ui-widget-content" value=' + item.ID + ' name="' + item.name + '"><a href="#">' + item.name + extra + '</a></li>';
+
+
+              // var li = '<li class="ui-widget-content" value=' + item.ID + ' name="' + item.name + '"><a href="#">' + item.name + '</a></li>';
               $('#resources').append(li);
           }
         };
@@ -208,6 +214,7 @@
           document.getElementById('description').value = resource.description;
           document.getElementById('query').value = resource.query;
           var URL;
+          URL = resource.link;
           if ((resource.link != '') && (resource.link.substring(0,4) != "http")) { 
               var s = 'http://';
               s += window.location.host + '/';
@@ -355,8 +362,8 @@
       </td>
 
       <td hidden id="unfold" valign=top align=center style="width:500px;">
-        <span class="header" style="" id="open2">properties</span><br><br>
-        <iframe id="photo" height=300 width=400> </iframe>
+        <span class="header" style="" id="open2">preview</span><br><br>
+        <iframe id="photo" height=500 width=1000> </iframe>
       </td>
 
 
@@ -379,7 +386,7 @@
             <td class='short' align=left>  <input id="link2" type=text style="width:339px;"></td>
           </tr>
           <tr>
-            <td class='short' align=right> query </td>
+            <td class='short' align=right> version </td>
             <td class='short' align=left>  <input id="query2" type=text style="width:339px;"></td>
           </tr>
           <tr>

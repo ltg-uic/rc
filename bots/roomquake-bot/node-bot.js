@@ -13,16 +13,16 @@ var seismogram = nutella.persist.getJsonObjectStore('seismogram');
 seismogram.load();
 if (!seismogram.hasOwnProperty('data')){
     seismogram = {data:{
-        WINDOW:60, //number of seconds in seismograph window
+        WINDOW:70, //number of seconds in seismograph window
         SAMPLING_RESOLUTION:1, //number of data points per second
         ADVANCE_WINDOW_THRESHOLD:0,
         P_WAVE_VELOCITY:1, //meters per second
         S_WAVE_VELOCITY:.57, //meters per second
         MAX_DISPLACEMENT:200,
         MAX_MAGNITUDE:5,
-        P_TO_S_AMPLITUDE_RATIO:.3,
-        S_TAIL:.2, // proportion of S wave waveform devoted to decay
-        S_TO_P_LENGTH_RATIO:3,
+        P_TO_S_AMPLITUDE_RATIO:.15,
+        S_TAIL:.8, // proportion of S wave waveform devoted to decay
+        S_TO_P_LENGTH_RATIO:5,
         NOISE: 3
     }}
     // seismogram.data.S_WAVE_VELOCITY = seismogram.data.P_WAVE_VELOCITY / 1.76;
@@ -35,6 +35,13 @@ readings.load();
 if (!readings.hasOwnProperty('data')){
     readings.data =[];
     readings.save();
+}
+
+var readingsLog = nutella.persist.getJsonObjectStore('readingsLog');
+readingsLog.load();
+if (!readingsLog.hasOwnProperty('data')){
+    readingsLog.data =[];
+    readingsLog.save();
 }
 
 
@@ -86,7 +93,7 @@ nutella.net.subscribe('set_seismogram', function (message, from){
 });
 
 
-nutella.net.handle_requests('room_configuration', function(message){
+nutella.net.handle_requests('room_configuration', function(message){ 
     return room.data;
 });
 
@@ -145,6 +152,16 @@ nutella.net.handle_requests('get_readings', function (message, from){
     return (readings.data);
 });
 
+// nutella.net.handle_requests('get_readingsLog', function (message, from){
+//     return (readingsLog.data);
+// });
+
+// nutella.net.subscribe('append_to_readingsLog', function (message, from){
+//     readingsLog = nutella.persist.getJsonObjectStore('readingsLog');
+//     readingsLog.load();
+//     readingsLog.data.push(message);
+//     readingsLog.save();
+// });
 
 // //  nutella bug? workaround: must redefine and reload json objects prior to saving them
 // //  
@@ -169,8 +186,14 @@ nutella.net.subscribe('set_readings', function (message, from){
 nutella.net.subscribe('reading', function (message, from){
     readings = nutella.persist.getJsonObjectStore('readings');
     readings.load();
+
+    readings.data = readings.data.filter(function(item){
+        return (!(message.instance == item.instance && message.s == item.s));
+    });
+
     readings.data.push(message);
     readings.save();
+    nutella.net.publish('reading_update',message);
 });
 
 

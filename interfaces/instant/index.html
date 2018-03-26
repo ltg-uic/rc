@@ -153,7 +153,7 @@
 					m.room_width_meters = Number(document.getElementById("maxRoomX").value);
 					m.room_height_meters = Number(document.getElementById("maxRoomY").value);
 					m.seismographs = [];
-					for (var i=0; i<5; i++) {
+					for (var i=0; i<6; i++) {
 		    			var sX = Number(document.getElementById("x" + (i+1)).value);
 		    			var sY = Number(document.getElementById("y" + (i+1)).value);
 		    			if (sX <= 0 || sY <= 0) continue;
@@ -184,7 +184,7 @@
 		    		ctx.drawImage(Yarrow,10,ctx.canvas.height-160);
 		    		ctx.fillStyle = "orange";
 		    		ctx.font = "30px Arial";
-		    		for (var i=0; i<5; i++){
+		    		for (var i=0; i<6; i++){
 		    			var sX = Number(document.getElementById("x" + (i+1)).value);
 		    			var sY = Number(document.getElementById("y" + (i+1)).value);
 		    			if (sX <= 0 || sY <= 0) continue;
@@ -197,6 +197,17 @@
 					}
 		        }
 
+		        // function blink() {
+		        // 	document.getElementById('history').style.backgroundColor = "black";
+		        // 	setTimeout(function(){document.getElementById('history').style.backgroundColor = "white"},200)
+		        // }
+
+		        function blink() {
+		        	var bc = document.body.style.backgroundColor
+		        	document.body.style.backgroundColor = "black";
+		        	setTimeout(function(){document.body.style.backgroundColor = bc},200)
+		        }
+
 		        function trigger() {
 					// Gather data
 					var mq = {};
@@ -205,7 +216,12 @@
 					mq.demo = true;
 					mq.location.x = Number(document.getElementById("instantX").value);
 					mq.location.y = Number(document.getElementById("instantY").value);
-					mq.time = new Date().toGMTString();
+
+					var t = new Date().getTime() + 4800;
+					setTimeout(blink,4800);
+					// alert(t);
+					// var t2 = new Date(t); alert(t2);
+					mq.time = new Date(t).toGMTString();
 					mq.id = "d" + nextRQindex;
 					// Update model
 					// quakes.push(mq);
@@ -213,6 +229,7 @@
 					// updateQuakesTableView('demo_quakes_table', true);
 					// Ship to backend
 					nutella.net.publish("new_demo_quake", mq);
+
 
 					document.getElementById("history").value = 
 						"RoomQuake " + nextRQindex++ + '\n' +
@@ -257,7 +274,7 @@
 				  <option value="4">4</option>
 				  <option value="5">5</option>
 				</select><br><br>
-				<button id="instant">Generate quake</button><br><br>
+				<button id="instant">Generate quake</button>&nbsp&nbsp<span id="countdown"></span><br><br>
 				Event History<br>
 				<textarea id="history" rows=11 cols=40></textarea>
 				<br><br><br>

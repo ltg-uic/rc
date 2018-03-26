@@ -159,6 +159,9 @@ nutella.net.handle_requests('get_unitname', function (message, from){
 //  nutella bug? workaround: must redefine and reload json objects prior to saving them
 //  
 
+
+
+
 nutella.net.subscribe('set_portals', function (message, from){
     portals = nutella.persist.getJsonObjectStore('portals');
     portals.load();
@@ -224,6 +227,35 @@ nutella.net.subscribe('set_unitname', function (message, from){
     // nutella.net.publish('unitname_set',unitname);
     // nutella.net.publish('unitname_set',message);
 });
+
+
+// nutella.net.subscribe('pwd', function (message, from){
+
+    // const { exec } = require('child_process');
+    // exec('cd ../..; echo "tim" > runs; nutella start tim', (err, stdout, stderr) => {
+    //   if (err) {
+    //     return;
+    //   }
+    // var s = stdout.split('\n');
+    // var runs = [];
+
+    // for (var i=1; i<s.length-1; i++){
+    //     runs.push(s[i].replace(/\s/g, ""));
+    // }
+    // console.log(runs);
+
+
+
+
+
+    //   // the *entire* stdout and stderr (buffered)
+    //   // console.log(`stdout: ${stdout}`);
+    //   // console.log(`stderr: ${stderr}`);
+    // });
+
+
+// });
+
 
 
 
