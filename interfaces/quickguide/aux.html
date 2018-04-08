@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="roomCast">
-  <title>roomcast</title>
+  <title>quickguide</title>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -47,30 +47,93 @@ p {
 
 $(function() {
   // roomcast_style();
-  var baseURL = top.location.href; 
-  // if(baseURL.substr(-1) == "#") baseURL.slice(0,-1);
 
-  baseURL = baseURL.replace(/&portal=.*/,'');
 
-  if (top.portal.ID == 1) buildURL('designer',baseURL,1);
-  buildURL('educator',baseURL,2);
+    // document.getElementsByTagName('a')[0].click(); 
+    // document.getElementsByTagName('a')[1].click();   
+    // document.getElementsByTagName('a')[2].click();   
 
-  for (var i=2; i<top.portals.portalList.length; i++)
-  {
-    var item = top.portals.portalList[i];
-    buildURL(item.name,baseURL,item.ID);
+    if (query_parameters.hasOwnProperty('VERSION')){
+      if (query_parameters.VERSION == 1){
+        novice();
+      }
+      if (query_parameters.VERSION == 1){
+        expert();
+      }
+    }
+
+  novice(); clickAll();
+  // $('#master').click(function(){
+    // $('#portals a').click();
+  // })
+  // for (var i=0; i<$('#portals a').length; i++){
+    // $('#portals a').click();
+  // };
+});
+
+
+  function novice (){
+    var baseURL = top.location.href; 
+    // if(baseURL.substr(-1) == "#") baseURL.slice(0,-1);
+
+    baseURL = baseURL.replace(/&portal=.*/,'');
+
+    if (top.portal.ID == 1) buildURL('designer',baseURL,1);
+    buildURL('educator',baseURL,2);
+
+    for (var i=2; i<top.portals.portalList.length; i++)
+    {
+      var item = top.portals.portalList[i];
+      // hack
+
+      // buildURL(item.name,baseURL,item.ID);
+
+      if (item.name=='station') {
+        buildURL(item.name,baseURL,item.ID);
+        buildURL(item.name,baseURL,item.ID);
+      }
+
+    }
   }
+
+  function expert (){
+    var baseURL = top.location.href; 
+    // if(baseURL.substr(-1) == "#") baseURL.slice(0,-1);
+
+    baseURL = baseURL.replace(/&portal=.*/,'');
+
+    if (top.portal.ID == 1) buildURL('designer',baseURL,1);
+    buildURL('educator',baseURL,2);
+
+    for (var i=2; i<top.portals.portalList.length; i++)
+    {
+      var item = top.portals.portalList[i];
+      // hack
+
+      // buildURL(item.name,baseURL,item.ID);
+
+      if (item.name=='station') {
+        buildURL(item.name,baseURL,item.ID);
+        // buildURL(item.name,baseURL,item.ID);
+      }
+
+    }
+  }
+
 
   // if (top.portal.ID == 1) buildURL('administrative',baseURL,find_portal('administrative'));
   // buildURL('participant',baseURL,find_portal('participant'));
   // buildURL('public',baseURL,find_portal('public'));
 
 
-  function buildURL(type,URL,portalID){
+  function buildURL(type,URL,portalID,name){
     if (portalID < 1)return;
     var thisURL = URL + '&portal=' + portalID;  
+
+    // window.open(thisURL,'','width=100,height=100');
+
     var s = '<a href="' + thisURL + '" onclick="window.open(' + "'" + thisURL + 
-      "','', 'width=700,height=600'); return false;" + '">' + type + '</a>: ';
+      "','', 'width=100,height=100');" + '">' + type + '</a>: ';
     // console.log(s);
     $('#portals').append(s);
     $('#portals').append(thisURL);
@@ -110,14 +173,19 @@ $(function() {
   // $('#student').html(baseURL + '&portal=20');
   // $('#group').html(baseURL + '&portal=21');
   // $('#public').html(baseURL + '&portal=31');
-});
+  function clickAll(){
+    $('#portals a').click();
+  }
 
 
 </script>
 </head>
 <body>
-  <span style="text-size:150%;">Custom URLs</span><br><br>
-  <div id="portals"></div>
+  <span style="text-size:150%;">Quick Guide</span><br><br>
+  <div hidden id="portals"></div>  
+  <a onclick="gothere(); return false;"> novice </a><br>
+    <a onclick="gothere(); return false;"> expert </a>
+
 
 <!-- 
 designer: <span id='designer'></span><br><br>

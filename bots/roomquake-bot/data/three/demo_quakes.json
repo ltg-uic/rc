@@ -1,1 +1,1 @@
-{"quakes_schedule":[]}
+{"quakes_schedule":[{"magnitude":2,"location":{"x":0.808,"y":7.26},"demo":true,"time":"Sun, 08 Apr 2018 19:39:25 GMT","id":"d1"},{"magnitude":2,"location":{"x":2.908,"y":7.3},"demo":true,"time":"Sun, 08 Apr 2018 19:58:49 GMT","id":"d2"}]}

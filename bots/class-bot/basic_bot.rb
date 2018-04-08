@@ -1,6 +1,6 @@
 require 'nutella_lib'
 
-
+puts 'alive'
 # Parse command line arguments
 broker, app_id, run_id = nutella.app.parse_args ARGV
 # Extract the component_id
@@ -9,6 +9,8 @@ component_id = nutella.extract_component_id
 nutella.app.init(broker, app_id, component_id)
 # (Optional) Set the resourceId
 nutella.app.set_resource_id 'my_resource_id'
+
+
 
 clusters = nutella.app.persist.get_json_object_store('clusters')
 current = nutella.app.persist.get_json_object_store('current')
@@ -72,7 +74,7 @@ current = nutella.app.persist.get_json_object_store('current')
 for cluster_record in clusters['data']
     nutella.app.net.handle_requests_on_run(cluster_record['run_id'],'get_cluster_info', lambda do |run_id, from|
 
-
+puts 'got here'
                                               reply = Hash.new
                                               reply['run_ids'] =  Array[]
 
