@@ -60,8 +60,21 @@ button {
     [{portal: 'educator', width: screenWidth * .54, height: screenHeight-125, top:0, left:0},{portal: 'station', width: screenWidth * .44, height: screenHeight * .48, top: 0, left: screenWidth * .54+2},{portal: 'station', width: screenWidth * .44, height: screenHeight * .5, top: screenHeight * .5, left: screenWidth * .54+2}],
     [{portal: 'student', width: screenWidth * .25, height: screenHeight* .445, top:0, left:0},{portal: 'student', width: screenWidth * .25, height: screenHeight * .445, top: screenHeight*.467, left: 0},{portal: 'class display', width: screenWidth * .73, height: screenHeight, top: 0, left: screenWidth * .305}],
     [{portal: 'educator', width: screenWidth * .66, height: screenHeight-125, top:0, left:0},{portal: 'station', width: screenWidth * .32, height: screenHeight * .49, top: 0, left: screenWidth*.66},{portal: 'station', width: screenWidth * .32, height: screenHeight * .49, top: screenHeight * .51, left: screenWidth*.66}],
-    [{portal: 'domain specialist', width: screenWidth * .66, height: screenHeight-125, top:0, left:0},{portal: 'station', width: screenWidth * .32, height: screenHeight * .49, top: 0, left: screenWidth*.66},{portal: 'station', width: screenWidth * .32, height: screenHeight * .49, top: screenHeight * .51, left: screenWidth*.66}],
+    [{portal: 'domain specialist', width: screenWidth * .66, height: screenHeight-125, top:0, left:0},{portal: 'station', width: screenWidth * .32, height: screenHeight * .49, top: 0, left: screenWidth*.66},{portal: 'station', width: screenWidth * .32, height: screenHeight * .49, top: screenHeight * .51, left: screenWidth*.66}]
   ];
+
+
+  var chromewindowList = [
+    [],
+    [{portal: 'educator', width: screenWidth * .54, height: screenHeight-225, top:0, left:0},{portal: 'station', width: screenWidth * .44, height: screenHeight * .441, top: 0, left: screenWidth * .54+2},{portal: 'station', width: screenWidth * .44, height: screenHeight * .45, top: screenHeight * .51, left: screenWidth * .54+2}],
+    [{portal: 'educator', width: screenWidth * .54, height: screenHeight-225, top:0, left:0},{portal: 'station', width: screenWidth * .44, height: screenHeight * .441, top: 0, left: screenWidth * .54+2},{portal: 'station', width: screenWidth * .44, height: screenHeight * .45, top: screenHeight * .51, left: screenWidth * .54+2}],
+    [{portal: 'student', width: screenWidth * .25, height: screenHeight* .38, top:0, left:0},{portal: 'student', width: screenWidth * .25, height: screenHeight * .38, top: screenHeight*.445, left: 0},{portal: 'class display', width: screenWidth * .73, height: screenHeight, top: 0, left: screenWidth * .305}],
+    [{portal: 'educator', width: screenWidth * .66, height: screenHeight-225, top:0, left:0},{portal: 'station', width: screenWidth * .32, height: screenHeight * .441, top: 0, left: screenWidth*.66},{portal: 'station', width: screenWidth * .32, height: screenHeight * .45, top: screenHeight * .51, left: screenWidth*.66}],
+    [{portal: 'domain specialist', width: screenWidth * .66, height: screenHeight-225, top:0, left:0},{portal: 'station', width: screenWidth * .32, height: screenHeight * .441, top: 0, left: screenWidth*.66},{portal: 'station', width: screenWidth * .32, height: screenHeight * .45, top: screenHeight * .51, left: screenWidth*.66}]
+  ];
+
+
+
 
   var closer = [{height:100,width:100,top:100,left:100},{height:100,width:screenWidth * .54-2,top:screenHeight,left:3},{height:100,width:screenWidth * .54-2,top:screenHeight,left:3},{height:100,width:screenWidth * .25,top:screenHeight,left:0},{height:100,width: screenWidth * .66-3,top:screenHeight,left:3},{height:100,width: screenWidth * .66-3,top:screenHeight,left:3}];
 
@@ -79,6 +92,9 @@ var cw;
 
 $(function() {
   // top.resizeTo(600,600);
+var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+  if (isChrome) windowList = chromewindowList;
 
     // for (var i=0; i<6; i++)names.push('w' + i); 
     // closeAll();
@@ -91,7 +107,7 @@ $(function() {
        version = query_parameters.V; 
      var pURL = top.location.href.replace(/roomcast\/index/,'quickguide/p' + version); 
       for (var i=0; i<windowList[version].length; i++)
-          window.open(baseURL + '&portal=' + find_portal(windowList[version][i].portal),names[i],'width=' + windowList[version][i].width + ',height=' + windowList[version][i].height + ', top=' + windowList[version][i].top+ ',left=' + windowList[version][i].left);
+          window.open(baseURL + '&portal=' + find_portal(windowList[version][i].portal),names[i],'menubar=0,titlebar=0,width=' + windowList[version][i].width + ',height=' + windowList[version][i].height + ', top=' + windowList[version][i].top+ ',left=' + windowList[version][i].left);
      window.open(pURL,'p','width=' + (screenWidth/2) + ',height=' + (screenHeight/2) + ', top=' + (screenHeight/4) + ',left=' + (screenWidth/4));
      window.open(cURL,'c','width=' + closer[version].width + ',height=' + closer[version].height + ', top=' + closer[version].top + ',left=' + closer[version].left);
 
