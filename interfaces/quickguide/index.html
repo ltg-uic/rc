@@ -42,6 +42,7 @@ button {
 
 <script type="text/javascript">
 
+
   var screenWidth = screen.width; 
   var screenHeight = screen.height;
 
@@ -58,16 +59,22 @@ button {
     [{portal: 'educator', width: screenWidth * .54, height: screenHeight* .85, top:0, left:0},{portal: 'station', width: screenWidth * .43, height: screenHeight * .45, top: 0, left: screenWidth * .7},{portal: 'station', width: screenWidth * .43, height: screenHeight * .45, top: screenHeight * .5, left: screenWidth * .7}],
     [{portal: 'educator', width: screenWidth * .54, height: screenHeight* .85, top:0, left:0},{portal: 'station', width: screenWidth * .43, height: screenHeight * .45, top: 0, left: screenWidth * .7},{portal: 'station', width: screenWidth * .43, height: screenHeight * .45, top: screenHeight * .5, left: screenWidth * .7}],
     [{portal: 'student', width: screenWidth * .25, height: screenHeight* .45, top:0, left:0},{portal: 'student', width: screenWidth * .25, height: screenHeight * .45, top: screenHeight*.5, left: 0},{portal: 'class display', width: screenWidth * .65, height: screenHeight * .85, top: 0, left: screenWidth * .3}],
-   [{portal: 'educator', width: screenWidth * .67, height: screenHeight* .8, top:0, left:0},{portal: 'station', width: screenWidth * .3, height: screenHeight * .45, top: 0, left: screenWidth*.69},{portal: 'station', width: screenWidth * .3, height: screenHeight * .45, top: screenHeight/2, left: screenWidth*.69}]
+    [{portal: 'educator', width: screenWidth * .67, height: screenHeight* .8, top:0, left:0},{portal: 'station', width: screenWidth * .3, height: screenHeight * .45, top: 0, left: screenWidth*.69},{portal: 'station', width: screenWidth * .3, height: screenHeight * .45, top: screenHeight/2, left: screenWidth*.69}]
   ];
 
-  var openWindows = []; 
+  var closer = [{height:100,width:100,top:100,left:100},{height:100,width:100,top:100,left:100},{height:100,width:100,top:400,left:400},{height:100,width:100,top:100,left:100},{height:100,width:100,top:100,left:100}];
+
+
+  // var openWindows = []; 
 
   var activity = ['','waves &amp; seismograms','planning','trilateration','distributions'];
 
   var names = [];
-  for (var i=0; i<20; i++)names[i] = 'w' + i;
+  for (var i=0; i<5; i++)names.push('w' + i);
+  names.push('p');
+  names.push('c');
 
+var cw;
 
 $(function() {
   // top.resizeTo(600,600);
@@ -75,16 +82,19 @@ $(function() {
     // for (var i=0; i<6; i++)names.push('w' + i); 
     // closeAll();
 
-
   var baseURL = top.location.href;
+      var cURL = top.location.href.replace(/roomcast\/index/,'quickguide/c');
 
-    if (query_parameters.hasOwnProperty('V')) {
-      version = query_parameters.V; 
-      var pURL = top.location.href.replace(/roomcast\/index/,'quickguide/p' + version); 
+    if (query_parameters.hasOwnProperty('V')) { 
+      closeAll();
+       version = query_parameters.V; 
+     var pURL = top.location.href.replace(/roomcast\/index/,'quickguide/p' + version); 
       for (var i=0; i<windowList[version].length; i++)
-          openWindows[i] = window.open(baseURL + '&portal=' + find_portal(windowList[version][i].portal),names[i],'width=' + windowList[version][i].width + ',height=' + windowList[version][i].height + ', top=' + windowList[version][i].top+ ',left=' + windowList[version][i].left);
-      openWindows[windowList[version].length] = window.open(pURL,'p','width=' + (screenWidth/2) + ',height=' + (screenHeight/2) + ', top=' + (screenHeight/4) + ',left=' + (screenWidth/4));
-   } //else closeAll();
+          window.open(baseURL + '&portal=' + find_portal(windowList[version][i].portal),names[i],'width=' + windowList[version][i].width + ',height=' + windowList[version][i].height + ', top=' + windowList[version][i].top+ ',left=' + windowList[version][i].left);
+     window.open(pURL,'p','width=' + (screenWidth/2) + ',height=' + (screenHeight/2) + ', top=' + (screenHeight/4) + ',left=' + (screenWidth/4));
+     window.open(cURL,'c','width=' + closer[version].width + ',height=' + closer[version].height + ', top=' + closer[version].top + ',left=' + closer[version].left);
+
+   } else {alert(window.screenX); cw =window.open(cURL,'c','width=' + 200 + ',height=' + 100 + ', top=' + (window.sceenY ) + ',left=' + (window.sceenX));}
 
   // top.document.focus();
     // switch activities if necessary
@@ -102,7 +112,7 @@ $(function() {
         };
       };
 
-    };
+    }; 
 
   });
 
@@ -117,22 +127,40 @@ function find_portal(name){
 
 
 function gothere(p){
-  for (var i=0; i<openWindows.length; i++) openWindows[i].close();
+  // for (var i=0; i<openWindows.length; i++) openWindows[i].close();
+  // newWin = window.open('','c');
+  // newWin.close();
   location.href = location.href + '&V=' + p;
 }
 
-function closeAll() { 
-  var newWin = window.open('','p');
-  newWin.close();
+
+function closeAll() { console.log('names.length'); console.log(names.length);
   for (var i=0; i<names.length; i++) { 
     var newWin = window.open('', names[i]);
-    if (newWin === null) return;
-    newWin.close();  
+    if (!(newWin === null)) newWin.close();     
   };
+  return false;
   // var newWin = window.open('','p');
   // newWin.close();
 }
 
+
+// function closeAll() { console.log('i got called');
+//   var newWin = window.open('','p');
+//   newWin.close();
+//   newWin = window.open('','c');
+//   newWin.close();
+//   for (var i=0; i<names.length; i++) { 
+//     var newWin = window.open('', names[i]);
+//     if (newWin === null) return;
+//     newWin.close();  
+//   };
+//   return false;
+//   // var newWin = window.open('','p');
+//   // newWin.close();
+// }
+
+document.handOver = function() {window.focus();};
 
 </script>
 </head>
@@ -142,7 +170,7 @@ function closeAll() {
   <button onclick="gothere(2); return false;"> planning </button>
   <button onclick="gothere(3); return false;"> trilateration </button>
   <button onclick="gothere(4); return false;"> distributions </button>
-  <button id="closeAll" onclick="closeAll();">close all windows</button>
+  <button type="button" id="closeAll" onclick="closeAll();return false;">close all windows</button>
 <br><br>
 <div style="font-size: 125%">
 <b>An introduction to RoomQuake</b>
