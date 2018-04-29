@@ -1,8 +1,8 @@
 {
-  "name": "roomcast",
+  "name": "ps",
   "version": "3.0.0",
   "nutella_version": "0.6.0",
   "type": "project",
-  "description": "roomcast demo with roomquake",
+  "description": "phenomenon server home page",
   "app_bots": ["class-bot"]
 }

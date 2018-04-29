@@ -1,5 +1,5 @@
-# roomquake
-roomquake is a nutella application that transforms the classroom into a seismic area and allows kids to learn about earthquakes.
+# ps
+ps is the root application for the phenomenon server
 
 ## Running
 Like all nutella applications simply

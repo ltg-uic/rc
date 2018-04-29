@@ -419,9 +419,9 @@ function build_tab_bar() {
 
   if (instance.ID == 0) r = [];
 
-  // add "portal" resource to tabs, no matter what.
+  // add "portal" resource to tabs, no matter what. (unless you're the phenomenon server root application...super hack)
 
-  r.unshift(1); 
+  if (!(query_parameters.app_id == "ps" && portal.ID != 1) ) r.unshift(1); 
 
   // maintain constant order for resources
 
@@ -496,8 +496,11 @@ function build_tab_bar() {
   //   $("#tabs").tabs({active:5});
   // else $("#tabs").tabs("option","active", 0);
 // preselect=1;
-  if (r.length == 2) match = 1;
-  $("#tabs").tabs("option","active", match);
+
+//removed next two lines for phenomenon server hack
+
+  // if (r.length == 2) match = 1;
+  // $("#tabs").tabs("option","active", match);
 
 }
 

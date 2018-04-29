@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;">
+ -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="roomCast">
+  <title>roomcast</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="nutella_lib.js" type="text/javascript"></script>
+  <script src="roomcast_lib.js" type="text/javascript"></script>
+  <style>
+
+
+body {
+    font-family: "Arial";
+    overflow: hidden;
+     color:white;
+     font-size: 100%;
+}
+
+
+p {
+    display: block;
+    margin-top: 0;
+    margin-bottom: 3px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+
+  </style>
+
+<script type="text/javascript">
+
+//   // initialize nutella 
+
+//   query_parameters = NUTELLA.parseURLParameters();
+//   nutella = NUTELLA.init(query_parameters.broker, query_parameters.app_id, query_parameters.run_id, NUTELLA.parseComponentId());
+
+//   nutella.net.subscribe('fix_URLs',function(dummy){location.reload(true)});
+
+// $(function() {
+//   // roomcast_style();
+//   var baseURL = top.location.href; 
+//   // if(baseURL.substr(-1) == "#") baseURL.slice(0,-1);
+
+//   baseURL = baseURL.replace(/&portal=.*/,'');
+
+//   if (top.portal.ID == 1) buildURL('designer',baseURL,1);
+//   buildURL('educator',baseURL,2);
+
+//   for (var i=2; i<top.portals.portalList.length; i++)
+//   {
+//     var item = top.portals.portalList[i];
+//     buildURL(item.name,baseURL,item.ID);
+//   }
+
+//   // if (top.portal.ID == 1) buildURL('administrative',baseURL,find_portal('administrative'));
+//   // buildURL('participant',baseURL,find_portal('participant'));
+//   // buildURL('public',baseURL,find_portal('public'));
+
+
+//   function buildURL(type,URL,portalID){
+//     if (portalID < 1)return;
+//     var thisURL = URL + '&portal=' + portalID;  
+//     var s = '<a href="' + thisURL + '" onclick="window.open(' + "'" + thisURL + 
+//       "','', 'width=700,height=600'); return false;" + '">' + type + '</a>: ';
+//     // console.log(s);
+//     $('#portals').append(s);
+//     $('#portals').append(thisURL);
+//     $('#portals').append('<br><br>');    
+//   }
+
+
+
+//   function find_portal(type){
+//     var pp = top.portals.portalList.filter(function(item){
+//       return (item.type == type && item.ID>2);
+//     });
+//     if (pp.length == 0) return (0);
+//     return (pp[0].ID); 
+//   }
+
+
+
+
+
+//   // var list = top.portals.portalList;
+//   // for (var i=0; i<list.length; i++){
+//   //   var printName = list[i].name;
+//   //   var URL = baseURL + '&portal=' + list[i].ID;
+
+//   //   var s = '<a href="' + URL + '" target="_blank">' + printName + '</a>: ';
+
+//   //   $('#portals').append(s);
+//   //   $('#portals').append(URL);
+
+//   //   $('#portals').append('<br><br>');
+//   // }
+
+//   // $('#designer').html(baseURL + '&portal=1'); 
+//   // $('#manager').html(baseURL + '&portal=2'); 
+//   // $('#teacher').html(baseURL + '&portal=10');
+//   // $('#student').html(baseURL + '&portal=20');
+//   // $('#group').html(baseURL + '&portal=21');
+//   // $('#public').html(baseURL + '&portal=31');
+// });
+
+
+</script>
+</head>
+<body>
+<div  style="font-size:120%;">
+<b style="font-size:150%;">Welcome to the Phenomenon Server</b>
+<br><br>
+"Embedded phenomena" are web-based applications designed to turn classrooms into sites of whole-class inquiry around simulated scientific phenomena that are imagined to occupy and unfold within the physical space of their room. Computers scattered around the room serve as localized "portals" through which students can observe and manipulate these phenomena. Over time, these investigations allow students to collectively construct and use models of the simulated phenomena, with the goal of developing their understandings of the underlying science and the methods by which scientific communities build knowledge.
+<br><br>
+Our long-term goal is to provide teachers and students with access to a public repository of embedded phenomena for use in their practice. We envision a day when teachers will be able to select and configure embedded phenomena for their specific context, and have them "delivered" through the web and run on the computers in their classrooms. We wish to complement these applications with adaptable lesson plans, teachers' stories of their experiences using embedded phenomena, and research on their impacts on teaching and learning. We hope to attract developers who would like to add to a growing collection of embedded phenomena.
+<br><br>
+We're not there yet. But we are ready to describe some early examples of embedded phenomena, to share our experiences in enacting science curriculum units utilizing embedded phenomena, and to make available some interactive demos of the embedded phenomena software that we have built. We hope that the resources available on this site can help visitors to get an idea of what embedded phenomena are about, spark interest in their use, and inspire others to envision new embedded phenomena that could become the objects of whole-class scientific inquiry.
+<br><br>
+Tom Moher<br>
+Learning Sciences Research Institute<br>
+University of Illinois at Chicago
+</div>
+
+</body>
+</html>
